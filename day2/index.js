@@ -13,6 +13,8 @@ import {resolve} from "path";
 const fileInput = fs.readFileSync(resolve(dirname(), 'input.txt'), 'utf-8')
 
 let countValid = 0; // Valid passwords
+let countValidPart2 = 0; // Valid passwords
+
 let countLineProcessed = 0; // Line processed
 
 // Split line into params (min)-(max) (char): (value) : "15-19 k: kkkkkkkkkkkkzkkkkkkk" => {min:15, max:19, char:k, value: "kkkkkkkkkkkkzkkkkkkk"}
@@ -32,6 +34,9 @@ while (( resultLine = regex.exec(fileInput)) !== null) {
     if(countOccurence >= min && countOccurence <= max) {
        countValid++;
     }
+    if(value[min-1] !== value[max-1] && (value[min-1] === char || value[max-1] === char) ) {
+        countValidPart2++;
+    }
 
     // Increment counter of lines processed
     countLineProcessed++;
@@ -40,3 +45,6 @@ while (( resultLine = regex.exec(fileInput)) !== null) {
 
 console.log("Passwords verified: ", countLineProcessed)
 console.log("Valid passwords: ", countValid)
+console.log("Valid passwords Part 2: ", countValidPart2)
+
+
