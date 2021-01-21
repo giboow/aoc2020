@@ -18,5 +18,6 @@
   },
   "scripts": {
     "day1": "node day1/index.js",
+    "day2": "node day2/index.js"
   }
 }
