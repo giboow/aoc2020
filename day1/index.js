@@ -1,10 +1,16 @@
 import fs from 'fs';
-import {dirname, resolve} from 'path'
-import { fileURLToPath } from 'url';
+import {resolve} from 'path'
+import dirname from 'es-dirname';
+
+/**
+ * Advent of code 2020
+ * Day1 : https://adventofcode.com/2020/day/1
+ * Input source : https://adventofcode.com/2020/day/2/input
+ * @author Philippe Gibert <philippe.gibert@gmail.com> aka giboow
+ */
 
 // Read file and create a array contains data
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const fileInput = fs.readFileSync(resolve(__dirname, 'input.txt'), 'utf-8')
+const fileInput = fs.readFileSync(resolve(dirname(), 'input.txt'), 'utf-8')
 const data = fileInput.split("\n").map(value => parseInt(value, 10));
 
 // For each data, search a number wich sum with data is equal to 2020, then display the multiplication of the two numbers
