@@ -1,0 +1,21 @@
+{
+  "name": "aoc2020",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Philippe Gibert (giboow)",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "type": "module",
+  "dependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11"
+  },
+  "scripts": {
+    "day1": "node day1/index.js"
+  }
+}
