@@ -4,8 +4,8 @@ import {resolve} from "path";
 
 /**
  * Advent of code 2020
- * Day3 : https://adventofcode.com/2020/day/3
- * Input source : https://adventofcode.com/2020/day/3/input
+ * Day4 : https://adventofcode.com/2020/day/4
+ * Input source : https://adventofcode.com/2020/day/4/input
  * @author Philippe Gibert <philippe.gibert@gmail.com> aka giboow
  */
 
