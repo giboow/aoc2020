@@ -44,4 +44,18 @@ seats.forEach(value => {
     calcValues.push(calc);
 });
 
-console.log("Result :", Math.max(...calcValues));
+console.log("Result Part 1:", Math.max(...calcValues));
+
+console.log(calcValues.sort((a, b) => a-b));
+
+const findMySeat = calcValues.sort((a, b) => a-b).find((value, index, obj) => {
+    const prev = obj[index - 1];
+    const next = obj[index + 1];
+
+    const result = prev && next && !((value - prev) == 1 && (next - value) == 1);
+
+    return  result;
+}) + 1;
+
+
+console.log(findMySeat);
