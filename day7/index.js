@@ -8,18 +8,18 @@ const lines = fileInput.split("\n");
 const rules = {};
 
 lines.filter(value => value.length > 0).forEach(value => {
-   const [colorBag, bagsDef] = value.split(' contain ');
-   const bags = bagsDef && bagsDef.split(", ").map(b => {
-      const regexRes = /^(?<num>\d)\s(?<descr>(\w|\s)*)\.?$/gm.exec(b);
-      if(regexRes) {
-          const {num, descr} = regexRes.groups;
-          return {num : parseInt(num, 10), descr: descr.trim().replace("bags", "bag")};
-      } else {
-          return;
-      }
-   }).filter(value1 => value1 != undefined);
-   const key = colorBag.replace('bags', 'bag');
-   rules[key] = bags;
+    const [colorBag, bagsDef] = value.split(' contain ');
+    const bags = bagsDef && bagsDef.split(", ").map(b => {
+        const regexRes = /^(?<num>\d)\s(?<descr>(\w|\s)*)\.?$/gm.exec(b);
+        if (regexRes) {
+            const {num, descr} = regexRes.groups;
+            return {num: parseInt(num, 10), descr: descr.trim().replace("bags", "bag")};
+        } else {
+            return;
+        }
+    }).filter(value1 => value1 != undefined);
+    const key = colorBag.replace('bags', 'bag');
+    rules[key] = bags;
 });
 
 
@@ -27,7 +27,7 @@ lines.filter(value => value.length > 0).forEach(value => {
 
 const hasShinyFunc = (value) => {
 
-    if(!value || !value.length) {
+    if (!value || !value.length) {
         return false;
     } else {
 
@@ -46,4 +46,23 @@ const countShinyGoldBag = Object.entries(rules).reduce((acc, [key, value]) => {
     return acc;
 }, 0);
 
-console.log(countShinyGoldBag)
+console.log("Part 1", countShinyGoldBag);
+
+
+
+const countDescedentBags = (value) => {
+
+    if (!value || !value.length) {
+        return 1;
+    } else {
+        return value.reduce((acc, cur) => {
+            return acc + cur.num  * countDescedentBags(rules[cur.descr]);
+        }, 1);
+    }
+}
+// Count bags wich contains at least one shiny gold bag
+const mainRule = rules['shiny gold bag'];
+const countDescendantOfShinyGoldBag = countDescedentBags(mainRule) - 1; // the shiny gold bag is not taken into account.
+
+
+console.log("Part 2", countDescendantOfShinyGoldBag);
