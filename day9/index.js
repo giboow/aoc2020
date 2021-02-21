@@ -39,3 +39,36 @@ for (const [i, v] of lines.entries()) {
 
 console.log(resultPart1);
 
+
+const testContigous = (idx, target) => {
+
+    let i = idx;
+    let sum = 0;
+    let min = Infinity;
+    let max = 0;
+    do{
+        const value = lines[i];
+        min = Math.min(min, value);
+        max = Math.max(max, value);
+        sum += value;
+        i++;
+    } while (sum < target && i < lines.length);
+    if (sum === target) {
+        return {min, max, sum: min + max};
+    } else {
+        return null;
+    }
+}
+
+// part 2
+let resultPart2;
+for (const [i, v] of lines.entries()) {
+    resultPart2 = testContigous(i, resultPart1);
+    if (resultPart2 != null) {
+        break;
+    }
+}
+
+console.log(resultPart2);
+
+
